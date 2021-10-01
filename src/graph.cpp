@@ -27,18 +27,7 @@ bool Graph::no_repeat_edges(void) const {
         }
       });
 
-  // sort the list of edges.
-  auto cmp_fn = [](Edge &e1, Edge &e2) {
-    if (e1.v1 < e2.v1) {
-      return true;
-    } else if (e1.v1 > e2.v1) {
-      return false;
-    } else {
-      return e1.v2 < e2.v2;
-    }
-  };
-
-  std::sort(v.begin(), v.end(), cmp_fn);
+  std::sort(v.begin(), v.end());
   auto it = std::adjacent_find(v.begin(), v.end());
   return it == v.end();
 }

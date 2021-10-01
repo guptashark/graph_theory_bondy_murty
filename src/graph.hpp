@@ -11,6 +11,16 @@ struct Edge {
   bool operator==(const Edge &rhs) const {
     return v1 == rhs.v1 && v2 == rhs.v2;
   }
+
+  bool operator<(const Edge &rhs) const {
+    if (v1 < rhs.v1) {
+      return true;
+    } else if (v1 > rhs.v1) {
+      return false;
+    } else {
+      return v2 < rhs.v2;
+    }
+  }
 };
 
 // TODO: Make a more specific name, put all this in a namespace.
