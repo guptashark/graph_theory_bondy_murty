@@ -17,16 +17,7 @@ bool Graph::no_repeat_edges(void) const {
 
   // transform to make all edge structures lower letter first.
   // (Ie, {'c', 'a'} should be turned into {'a', 'c'}
-
-  std::for_each(v.begin(), v.end(),
-      [](Edge &e) {
-        if (e.v1 > e.v2) {
-          char tmp = e.v2;
-          e.v2 = e.v1;
-          e.v1 = tmp;
-        }
-      });
-
+  std::for_each(v.begin(), v.end(), [](Edge &e) {e.normalize();});
   std::sort(v.begin(), v.end());
   auto it = std::adjacent_find(v.begin(), v.end());
   return it == v.end();

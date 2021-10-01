@@ -8,6 +8,14 @@ struct Edge {
   char v1;
   char v2;
 
+  void normalize(void) {
+    if (v1 > v2) {
+      char tmp = v2;
+      v2 = v1;
+      v1 = tmp;
+    }
+  }
+
   bool operator==(const Edge &rhs) const {
     return v1 == rhs.v1 && v2 == rhs.v2;
   }
