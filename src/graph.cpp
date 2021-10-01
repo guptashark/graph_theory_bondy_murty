@@ -4,22 +4,22 @@
 #include <vector>
 #include <iostream>
 
-bool Graph::no_loops(void) const {
-  bool no_loops = std::none_of(edges.begin(), edges.end(),
-      [](Edge e) { return e.v1 == e.v2; });
+using std::none_of;
+using std::for_each;
+using std::sort;
+using std::adjacent_find;
+using std::mem_fn;
 
-  return no_loops;
+bool Graph::no_loops(void) const {
+  return none_of(edges.begin(), edges.end(), mem_fn(&Edge::is_loop));
 }
 
 // Lets make a copy of the edges vector and work with that.
 bool Graph::no_repeat_edges(void) const {
   std::vector<Edge> v(edges);
-
-  // transform to make all edge structures lower letter first.
-  // (Ie, {'c', 'a'} should be turned into {'a', 'c'}
-  std::for_each(v.begin(), v.end(), [](Edge &e) {e.normalize();});
-  std::sort(v.begin(), v.end());
-  auto it = std::adjacent_find(v.begin(), v.end());
+  for_each(v.begin(), v.end(), [](Edge &e) {e.normalize();});
+  sort(v.begin(), v.end());
+  auto it = adjacent_find(v.begin(), v.end());
   return it == v.end();
 }
 

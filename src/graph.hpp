@@ -8,6 +8,8 @@ struct Edge {
   char v1;
   char v2;
 
+  bool is_loop(void) const { return v1 == v2; }
+
   void normalize(void) {
     if (v1 > v2) {
       char tmp = v2;
