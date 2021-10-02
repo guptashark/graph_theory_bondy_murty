@@ -10,6 +10,24 @@ using std::sort;
 using std::adjacent_find;
 using std::mem_fn;
 
+bool Graph::add_vertex(char v) {
+  auto [it, err] = vertices.insert(v);
+  return err;
+}
+
+void Graph::add_vertices(std::initializer_list<char> v_lst) {
+  for (auto v : v_lst) vertices.insert(v);
+}
+
+bool Graph::add_edge(Edge e) {
+  if (vertices.contains(e.v1) && vertices.contains(e.v2)) {
+    edges.push_back(e);
+    return true;
+  } else {
+    return false;
+  }
+}
+
 bool Graph::no_loops(void) const {
   return none_of(edges.begin(), edges.end(), mem_fn(&Edge::is_loop));
 }

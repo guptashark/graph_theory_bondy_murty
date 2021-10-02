@@ -1,6 +1,7 @@
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
+#include <initializer_list>
 #include <vector>
 #include <set>
 
@@ -36,8 +37,19 @@ struct Edge {
 
 // TODO: Make a more specific name, put all this in a namespace.
 struct Graph {
+ private:
   std::set<char> vertices;
   std::vector<Edge> edges;
+
+ public:
+  // add a vertex. This will fail if the vertex already exists.
+  bool add_vertex(char v);
+
+  // silent errors. Any vertices already existing will not be re-added.
+  void add_vertices(std::initializer_list<char> v_lst);
+
+  // add an edge. Fails if the edge contains vertices not in the graph.
+  bool add_edge(Edge e);
 
   // Returns true if the graph has no loops. (An edge from a vertex
   // to itself.)
