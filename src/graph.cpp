@@ -26,3 +26,11 @@ bool Graph::no_repeat_edges(void) const {
 bool Graph::is_simple(void) const {
   return no_loops() && no_repeat_edges();
 }
+
+// A complete graph with n vertices must have n choose 2 edges.
+// We need to add a list of vertices to the graph.
+bool Graph::is_complete(void) const {
+  auto nv = vertices.size();
+  bool correct_num_edges = (nv * (nv - 1) / 2) == edges.size();
+  return correct_num_edges && is_simple() && no_loops();
+}

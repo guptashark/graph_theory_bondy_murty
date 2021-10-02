@@ -2,6 +2,7 @@
 #define GRAPH_H_
 
 #include <vector>
+#include <set>
 
 // An edge is a pair of vertices.
 struct Edge {
@@ -35,6 +36,7 @@ struct Edge {
 
 // TODO: Make a more specific name, put all this in a namespace.
 struct Graph {
+  std::set<char> vertices;
   std::vector<Edge> edges;
 
   // Returns true if the graph has no loops. (An edge from a vertex
@@ -46,6 +48,9 @@ struct Graph {
 
   // Returns true if no_loops and no_repeat_edges are true.
   bool is_simple(void) const;
+
+  // Returns true if the graph is complete.
+  bool is_complete(void) const;
 };
 
 #endif
