@@ -41,6 +41,8 @@ struct Graph {
   std::set<char> vertices;
   std::vector<Edge> edges;
 
+  std::vector<std::vector<int>> adjacency_matrix;
+
  public:
   // add a vertex. This will fail if the vertex already exists.
   bool add_vertex(char v);
@@ -63,6 +65,8 @@ struct Graph {
 
   // Returns true if the graph is complete.
   bool is_complete(void) const;
+
+  void print_adjacency_matrix(void) const;
 };
 
 #endif

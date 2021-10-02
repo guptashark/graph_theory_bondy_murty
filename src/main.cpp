@@ -19,7 +19,7 @@ int main(void) {
 void test_no_loops(void) {
   {
     Graph g;
-    g.add_vertices({'a', 'b', 'c', 'e', 'f'});
+    g.add_vertices({'a', 'b', 'c', 'd', 'e', 'f'});
     g.add_edge({'a', 'b'});
     g.add_edge({'c', 'b'});
     g.add_edge({'e', 'f'});
@@ -30,7 +30,7 @@ void test_no_loops(void) {
 
   {
     Graph g;
-    g.add_vertices({'a', 'b', 'c', 'e', 'f'});
+    g.add_vertices({'a', 'b', 'c', 'd', 'e', 'f'});
     g.add_edge({'a', 'b'});
     g.add_edge({'c', 'b'});
     g.add_edge({'e', 'f'});
@@ -43,7 +43,7 @@ void test_no_loops(void) {
 void test_no_repeat_edges(void) {
   {
     Graph g;
-    g.add_vertices({'a', 'b', 'c', 'e', 'f'});
+    g.add_vertices({'a', 'b', 'c', 'd', 'e', 'f'});
     g.add_edge({'a', 'b'});
     g.add_edge({'c', 'b'});
     g.add_edge({'e', 'f'});
@@ -54,7 +54,7 @@ void test_no_repeat_edges(void) {
 
   {
     Graph g;
-    g.add_vertices({'a', 'b', 'c', 'e', 'f', 'g'});
+    g.add_vertices({'a', 'b', 'c', 'd', 'e', 'f', 'g'});
     g.add_edge({'a', 'b'});
     g.add_edge({'c', 'b'});
     g.add_edge({'e', 'f'});
@@ -84,6 +84,8 @@ void test_complete(void) {
     // add an edge to make it complete.
     g.add_edge({'c', 'd'});
     assert(g.is_complete() == true);
+
+    g.print_adjacency_matrix();
 
     // add an edge to make it not a simple graph.
     g.add_edge({'c', 'd'});
